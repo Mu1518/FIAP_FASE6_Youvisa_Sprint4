@@ -46,7 +46,7 @@ O projeto foi desenvolvido em Python, utilizando as bibliotecas, Streamlit, Pand
 
 ** obs: todo o código desse projeto foi escrito utilizando a IDE (VSCode).
 
-### 🌎 MELHORIAS IMPLEMENTADAS EM RELAÇÃO À VERSÃO 0.1.0
+### 🛠️ MELHORIAS IMPLEMENTADAS EM RELAÇÃO À VERSÃO 1.0.0
 
 ESCREVER QDO FINALIZAR
 

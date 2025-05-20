@@ -76,9 +76,11 @@ Maiores informações sobre a instalação e uso dessas linguagens de Programaç
 
 3. Oracle: https://www.oracle.com.br
 
+4. Geopandas: https://geopandas.org/en/stable/docs.html
+
 ## 🛠️ TECNOLOGIAS UTILIZADAS
 
-![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white) &nbsp; ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) &nbsp; ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white) ![GeoPandas](https://img.shields.io/badge/Powered%23by-GeoPandas-43a047?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white) &nbsp; ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) &nbsp; ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white) 	![GeoPandas](https://img.shields.io/badge/Geopandas-%23150458.svg?style=for-the-badge&logo=Geopandas&logoColor=white)
 
 
 ### 1. ORACLE

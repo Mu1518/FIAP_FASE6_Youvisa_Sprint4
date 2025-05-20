@@ -78,7 +78,7 @@ Maiores informações sobre a instalação e uso dessas linguagens de Programaç
 
 ## 🛠️ TECNOLOGIAS UTILIZADAS
 
-![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white) &nbsp; ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) &nbsp; ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white) ![GeoPandas](https://img.shields.io/badge/Powered%20by-GeoPandas-43a047?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white) &nbsp; ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) &nbsp; ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white) ![GeoPandas](https://img.shields.io/badge/Powered%23by-GeoPandas-43a047?logo=python)
 
 
 ### 1. ORACLE

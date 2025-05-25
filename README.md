@@ -35,13 +35,11 @@ Autores: Jonatas Gomes, Iolanda Manzali, Murilo Nasser, Pedro Sousa, Amanda Frag
 
 ## 🔍 SOBRE O PROJETO
 
-Este projeto, referente a terceira fase do Challenge Ingredion do Curso de Inteligência Artificial da FiAP (1TIAO),
-            tem como foco o desenvolvimento de um modelo de Inteligência Artificial para cálculo de previsão da produtividade agrícola, utilizando NDVI
-            (Índice de Vegetação Normalizada), dados climáticos, de produtividade e custo.
+Este projeto, referente a terceira fase do Challenge Ingredion do Curso de Inteligência Artificial da FiAP (1TIAO), tem como foco o desenvolvimento de um modelo de Inteligência Artificial para cálculo de previsão da produtividade agrícola, utilizando NDVI (Índice de Vegetação Normalizada), dados climáticos, de produtividade e custo.
             
-            Os datasets de NDVI, custos e produtividade não possuem valores ausentes. Os dataset do INMET utilizados no programa foram previamente tratados e limpos antes de serem carregados via APEX para a nuvem Oracle. Isso ocorreu pela natureza diversa das formatações e pela necessidade de padronização dos dados para garantir a integridade e a precisão das análises. Os valores faltantes foram tratados com a média temporal dos dados disponíveis, e os dados foram convertidos para o formato necessário para análise nessa aplicação.
+Os datasets de NDVI, custos e produtividade não possuem valores ausentes. Os dataset do INMET utilizados no programa foram previamente tratados e limpos antes de serem carregados via APEX para a nuvem Oracle. Isso ocorreu pela natureza diversa das formatações e pela necessidade de padronização dos dados para garantir a integridade e a precisão das análises. Os valores faltantes foram tratados com a média temporal dos dados disponíveis, e os dados foram convertidos para o formato necessário para análise nessa aplicação.
             
-            O projeto foi desenvolvido em Python, utilizando as bibliotecas Streamlit, Pandas, NumPy, Scikit-learn, Plotly, Pickle, Os, Requests, Locale e Datetime.       
+O projeto foi desenvolvido em Python, utilizando as bibliotecas Streamlit, Pandas, NumPy, Scikit-learn, Plotly, Pickle, Os, Requests, Locale e Datetime.       
 
 ** obs: todo o código desse projeto foi escrito utilizando a IDE (VSCode).
 
@@ -57,11 +55,17 @@ Este projeto, referente a terceira fase do Challenge Ingredion do Curso de Intel
    
     A nova estrutura da aplicação encontrase modularizada da seguinte forma:
                 - app.py: script inicial para a aplicação, arquivo principal que direciona as outras páginas.
+    
                 - app_carga.py: permite o upload de arquivos CSV através de uma interface Streamlit, validando e enviando dados agrícolas (NDVI, produtividade e meteorológicos) para uma API Oracle. Ele faz o pré-processamento dos dados, exibe uma prévia e realiza a carga em lote com tratamento de erros e feedback ao usuário.
+    
                 - app_dados.py: realiza a conexão com uma API Oracle REST para coletar dados agrícolas, como NDVI, produtividade, dados meteorológicos e custos. Ele faz o tratamento das requisições, lida com paginação automática e retorna os dados organizados em DataFrames para análise no Streamlit.
+    
                 - app_links.py: exibe uma página no Streamlit com links úteis para acesso a bases de dados agrícolas e meteorológicos, como IBGE, INMET, CONAB e SATVEG. Ele serve como um atalho rápido para fontes de dados essenciais no contexto do projeto.
+    
                 - app_produtividade.py: realiza a estimativa de produtividade agrícola utilizando um modelo de machine learning treinado, acessível por meio de uma interface Streamlit. Ele permite ao usuário selecionar localidade, cultura, ano, mês e área plantada, realizando a previsão da produtividade e calculando a produção total estimada.
+    
                 - app_sobre.py: apresenta informações sobre o projeto de previsão de produtividade agrícola, desenvolvido no Challenge Ingredion da FIAP, explicando os objetivos, metodologia, tratamento dos dados e as bibliotecas utilizadas. Também apresenta os membros da equipe e os próximos passos planejados para evolução e expansão do projeto.
+    
                 - app_treinamento.py: permite treinar diversos modelos de machine learning supervisionados para previsão de produtividade agrícola, utilizando dados carregados da base Oracle. O usuário seleciona os modelos desejados, e o sistema realiza ajuste de hiperparâmetros, avalia o desempenho e salva o melhor modelo para ser utilizado nas previsões futuras.
     
 ### ❗ PRÉ-REQUISITOS 
@@ -268,10 +272,11 @@ Os dados sao utilizados para treinamento em um ou mais modelos selecionados pelo
 
 ## 💹 ESTIMATIVA DE PRODUTIVIDADE
 
-Para esta previsão, o melhor modelo modelo treinado com os dados históricos e os melhores hiperparâmetros ajustados (GradientBoosting com RMSE de 1995.68).  
+Para esta previsão, o melhor modelo modelo treinado com os dados históricos e os melhores hiperparâmetros ajustados (GradientBoosting com RMSE de 1995.68).
+
 A saída deste processo consistiu em estimativas quantitativas da produtividade para um horizonte temporal futuro específico (5 anos), fornecendo insights cruciais para o planejamento estratégico e a tomada de decisões proativas dentro do cenário do desafio. A acurácia dessas previsões está intrinsecamente ligada à qualidade dos dados futuros utilizados e à capacidade do modelo de generalizar padrões aprendidos no passado para novas situações.
 
-![prod](https://github.com/Ioiofmanzali/FIAP_FASE_5_SPRINT_2/blob/main/assets/est_prod.JPG)
+![prod](https://github.com/Ioiofmanzali/Sprint3_FIAP_Grupo09/blob/main/assets/prod.JPG))
 
 ## 🔗 LINKS IMPORTANTES
 
@@ -281,7 +286,9 @@ A saída deste processo consistiu em estimativas quantitativas da produtividade 
 ## 📣 PRÓXIMOS PASSOS
 
 Este é um projeto em evolução. Na sua versão 1.0.0 foi selecionada a cultura de milho da cidade de  Sorriso, localizada no estado do Mato Grosso.
+
 Para a versão 2.0.0, expandimos o escopo para incluir outras culturas e municípios do território nacional.
+
 O programa foi construido para ser escalável e para novas versões esperamos acrescentar dados relacionados a tipo de clima e solo, a partir de coordenadas geográficas.
             
 

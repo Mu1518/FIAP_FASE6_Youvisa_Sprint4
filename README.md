@@ -54,19 +54,20 @@ O projeto foi desenvolvido em Python, utilizando as bibliotecas Streamlit, Panda
     * MODULARIZAÇÃO DA APLICAÇÃO:
    
     A nova estrutura da aplicação encontrase modularizada da seguinte forma:
-                - app.py: script inicial para a aplicação, arquivo principal que direciona as outras páginas.
     
-                - app_carga.py: permite o upload de arquivos CSV através de uma interface Streamlit, validando e enviando dados agrícolas (NDVI, produtividade e meteorológicos) para uma API Oracle. Ele faz o pré-processamento dos dados, exibe uma prévia e realiza a carga em lote com tratamento de erros e feedback ao usuário.
+- app.py: script inicial para a aplicação, arquivo principal que direciona as outras páginas.
     
-                - app_dados.py: realiza a conexão com uma API Oracle REST para coletar dados agrícolas, como NDVI, produtividade, dados meteorológicos e custos. Ele faz o tratamento das requisições, lida com paginação automática e retorna os dados organizados em DataFrames para análise no Streamlit.
+- app_carga.py: permite o upload de arquivos CSV através de uma interface Streamlit, validando e enviando dados agrícolas (NDVI, produtividade e meteorológicos) para uma API Oracle. Ele faz o pré-processamento dos dados, exibe uma prévia e realiza a carga em lote com tratamento de erros e feedback ao usuário.
     
-                - app_links.py: exibe uma página no Streamlit com links úteis para acesso a bases de dados agrícolas e meteorológicos, como IBGE, INMET, CONAB e SATVEG. Ele serve como um atalho rápido para fontes de dados essenciais no contexto do projeto.
+- app_dados.py: realiza a conexão com uma API Oracle REST para coletar dados agrícolas, como NDVI, produtividade, dados meteorológicos e custos. Ele faz o tratamento das requisições, lida com paginação automática e retorna os dados organizados em DataFrames para análise no Streamlit.
     
-                - app_produtividade.py: realiza a estimativa de produtividade agrícola utilizando um modelo de machine learning treinado, acessível por meio de uma interface Streamlit. Ele permite ao usuário selecionar localidade, cultura, ano, mês e área plantada, realizando a previsão da produtividade e calculando a produção total estimada.
+- app_links.py: exibe uma página no Streamlit com links úteis para acesso a bases de dados agrícolas e meteorológicos, como IBGE, INMET, CONAB e SATVEG. Ele serve como um atalho rápido para fontes de dados essenciais no contexto do projeto.
     
-                - app_sobre.py: apresenta informações sobre o projeto de previsão de produtividade agrícola, desenvolvido no Challenge Ingredion da FIAP, explicando os objetivos, metodologia, tratamento dos dados e as bibliotecas utilizadas. Também apresenta os membros da equipe e os próximos passos planejados para evolução e expansão do projeto.
+- app_produtividade.py: realiza a estimativa de produtividade agrícola utilizando um modelo de machine learning treinado, acessível por meio de uma interface Streamlit. Ele permite ao usuário selecionar localidade, cultura, ano, mês e área plantada, realizando a previsão da produtividade e calculando a produção total estimada.
     
-                - app_treinamento.py: permite treinar diversos modelos de machine learning supervisionados para previsão de produtividade agrícola, utilizando dados carregados da base Oracle. O usuário seleciona os modelos desejados, e o sistema realiza ajuste de hiperparâmetros, avalia o desempenho e salva o melhor modelo para ser utilizado nas previsões futuras.
+- app_sobre.py: apresenta informações sobre o projeto de previsão de produtividade agrícola, desenvolvido no Challenge Ingredion da FIAP, explicando os objetivos, metodologia, tratamento dos dados e as bibliotecas utilizadas. Também apresenta os membros da equipe e os próximos passos planejados para evolução e expansão do projeto.
+    
+- app_treinamento.py: permite treinar diversos modelos de machine learning supervisionados para previsão de produtividade agrícola, utilizando dados carregados da base Oracle. O usuário seleciona os modelos desejados, e o sistema realiza ajuste de hiperparâmetros, avalia o desempenho e salva o melhor modelo para ser utilizado nas previsões futuras.
     
 ### ❗ PRÉ-REQUISITOS 
 
@@ -173,17 +174,22 @@ Os datasets IMNET foram processados conforme o descrito a seguir:
   - Preenchimento de valores ausentes: Valores ausentes, representados por '-9999', '-9999.0', 'NA' ou '', substituídos pela média temporal da mesma hora e dia de outros anos. 
   - Repetição do código WMO (código especifico da estação metereolólgica) em todas as linhas, garantindo a uniformidade dessa informação.
   - Salvamento dos arquivos processados sem sobrescreve os originais
- A001 (Brasilia), A020 (Pedro Afonso), A025 (Rio Verde), A042 (Barreiras), A426 (Guanambi), A839 (Passo Fundo), A843 (Dois Vizinhos), A852 (São Luiz Gonzaga), A853 (Cruz Alta), A859 (Caçador) e A721 (Dourados). 
-
 
 ### NDVI
-  - selecionados talhões aleatórios dos municipios de  Barreiras, Brasilia, Caçador, Cruz Alta, Dois Vizinhos, Dourados, Guanambi, Passo Fundo, Pedro Afonso, Rio Verde e Sorriso. 
+
+  - selecionados talhões aleatórios dos municipios de  Barreiras, Brasilia, Caçador, Cruz Alta, Dois Vizinhos, Dourados, Guanambi, Passo Fundo, Pedro Afonso, Rio Verde e Sorriso.
+    
 Os criterios selecionados no site Satveg:
             * Índice: NDVI
+    
             * Satélite: Terra e Aqua
+    
             * QA: Marginal / Nuvem / Neve
+    
             * Pré-filtragem: NoData / Nuvem
+    
             * Filtros: SG4
+    
     Obs: o QA neve foi selecionado para os estados da região Sul do Brasil.
 
 ## ➡️ ARQUITETURA DO PROGRAMA

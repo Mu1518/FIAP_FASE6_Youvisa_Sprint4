@@ -334,7 +334,8 @@ Seu Pull Request será revisado pela equipe e, se tudo estiver correto, será ac
 
 ## 🗃 Histórico de lançamentos
 
-* 0.1.0 - 18/04/2025
+* 2.0.0 - 26/05/2025
+* 1.0.0 - 18/04/2025
     
 
 ## 📋 Licença

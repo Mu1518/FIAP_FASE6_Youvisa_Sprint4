@@ -57,7 +57,25 @@ Em síntese, o **VistoBot Multi-Channel** reduz custos operacionais, melhora a e
 Este repositório tem como finalidade documentar e armazenar todo o trabalho desenvolvido ao longo do Sprint 1.   
 
 
-## ➡️ ARQUITETURA DA SOLUÇÃO - Esprint 1 
+## ➡️ ARQUITETURA DA SOLUÇÃO
+## 🧩 Arquitetura da Solução — Sprint 1
+
+A **Sprint 1** teve como foco a **definição técnica e conceitual da arquitetura do VistoBot Multi-Channel**, estabelecendo a base estrutural do projeto para as próximas etapas de desenvolvimento.
+
+O principal objetivo desta entrega foi **planejar a integração entre os módulos de automação, NLP, OCR e banco de dados**, garantindo uma plataforma escalável, segura e alinhada às operações da YOUVISA.
+
+A arquitetura proposta adota um modelo de **microfluxos orquestrados em Python (FastAPI)**, responsável por centralizar decisões e conectar os principais componentes do sistema:
+
+- **Chatbot Multicanal:** ponto de entrada das interações do usuário via Telegram, com expansão planejada para WhatsApp e Webchat.  
+- **Módulo de NLP:** realiza a classificação de intenções e a extração de entidades relevantes (país, tipo de visto, status de processo).  
+- **Pipeline OCR/RPA:** executa a leitura e validação automática de documentos enviados, reduzindo o tempo de triagem.  
+- **Banco de Dados Oracle APEX:** armazena informações de autenticação, registros de atendimento e logs de transbordo humano.  
+- **Camada de Segurança:** utiliza tokens de acesso e criptografia de dados em trânsito e repouso.  
+- **Módulo de Transbordo Humano:** direciona casos complexos para agentes, preservando o contexto completo da interação.
+
+Essa estrutura permite **automatizar até 80% dos atendimentos**, mantendo **segurança, rastreabilidade e uma experiência fluida** para o usuário.  
+Com isso, a Sprint 1 consolida a fundação técnica necessária para que a YOUVISA evolua rumo a um **atendimento digital inteligente, eficiente e integrado**.
+
 
 ## 📁 Estrutura das Pastas
 

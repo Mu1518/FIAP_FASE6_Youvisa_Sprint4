@@ -6,7 +6,7 @@
 
 <br>
 
-# PROJETO -   SPRINT 3 YOUVISA 
+#  **ENTERPRISE CHALLENGE - SPRINT 3 YOUVISA**
 
 ![capa]
 
@@ -38,6 +38,59 @@ Focamos na comunicação clara com o cliente: notificações automatizadas de mu
 ![alt text](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
 
 ---
+
+## 🚀 **USO ESTRATÉGICO DE INTELIGÊNCIA ARTIFICIAL**
+
+Nós aplicamos Inteligência Artificial de ponta em múltiplas camadas do produto para garantir velocidade, precisão e segurança durante todo o andamento processual. É fundamental destacar os seguintes usos de IA:
+
+### 1. Extração de Texto do Passaporte (OCR / Computer Vision)
+- Usando **Amazon Textract**, o sistema backend do admin consegue processar o passaporte do usuário imediatamente após o upload.
+- O texto e os dados tabulares são extraídos para validar informações vitais: confirmamos se o Nome Completo e a Data de Expiração extraídos conferem com o que foi preenchido no sistema automaticamente pelo Admin, agilizando aprovações e descartando inconsistências ou digitações incorretas.
+
+### 2. Comparação Facial e Biometria de Foto
+- Por meio do **Amazon Rekognition** (função *Compare Faces*), garantimos a identidade do solicitante comparando a foto de rosto que ele enviou espontaneamente com a foto biométrica impressa no passaporte carregado. Se a pontuação de similaridade atingir nossa margem de segurança configurada, a foto é identificada como a da mesma pessoa, sendo aprovada pela IA sem a necessidade de intervenção humana.
+
+### 3. Atendimento Inteligente e NLP via Chatbot
+- Implementado nativamente no frontend consumindo a API do **Google Gemini (LLM)**, fornecemos ao cliente um assistente 24/7.
+- O chatbot processa através de processamento de linguagem natural (NLP) a intenção do usuário, entendendo perguntas abertas como “O que está faltando entregar?”, “Quando meu visto de estudante chega?”, "O que acontece na etapa de documentos pendentes?".
+- Aplicamos as devidas proteções (guardrails): A IA não infere prazos precisos, nem toma decisões pela agência consular e nem faz promessas. Ela opera apenas traduzindo os estados técnicos para uma linguagem amigável.
+
+### 4. RAG e Contexto com Usuário Logado (Status de Processo)
+- O Chatbot foi enriquecido com a lógica avançada para injetar contexto (Retrieval-Augmented Generation / RAG conceitual) focada nos dados próprios do usuário logado.
+- Caso o usuário faça perguntas específicas como "Qual o status do MEU processo?", o chatbot obriga sua autenticação na mesma interface amigável (enviando senha OTP paro email no ato da conversa).
+- Uma vez autenticado, ele enriquece o contexto das requisições ao modelo Gemini injetando os históricos e status do banco de dados referenciando a conta logada do cliente. Isto faz com que a IA informe com total precisão como está o processo particular do cliente e quais as exatas pendências em falta.
+
+---
+
+## 🗄️ BANCO DE DADOS EM NUVEM (POSTGRESQL)
+
+O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **PostgreSQL através do serviço Neon.tech**. Todas as integrações a ele são feitas no backend em Python via SQL puro estruturado (sem uso de ORMs), visando entregar o mais alto desempenho com o controle estrito das interações.
+
+**Tabelas implementadas para suportar a complexidade do sistema:**
+- `usuarios`: Cadastro fundamental dos clientes, autenticados sem senha (passwordless) unicamente por código OTP.
+- `funcionarios`: Administradores e operadores internos responsáveis pela gerência da plataforma.
+- `codigos_otp`: Tokens efêmeros utilizados para o acesso tanto de clientes pelo website/bot, quanto por admins.
+- `processos`: Modelo central guardando as instâncias de solicitações de vistos, monitoradas em máquina de estados rigorosa na sprint 3.
+- `documentos`: Arquivos e comprovantes vinculados aos processos, validáveis tanto por humanos quanto por algoritmos de IA na nuvem AWS.
+- `transicoes_processo`: Tabela de auditoria garantindo que todo "pulo de etapa" (state transition) seja rastreável, listando responsável, justificativa e o timestamp.
+- `notificacoes`: Gerencia todos os disparos transacionais baseados em evento (event-driven) quando há mudanças nos processos.
+
+---
+
+## 🖥️ PASSO A PASSO / DEMONSTRAÇÃO DO SISTEMA
+
+*(Abaixo o registro imagético da plataforma YouVisa na Sprint 3).*
+
+### Visão Geral da Home e Criação de Processos
+- A Home page unifica serviços, informações adicionais e aciona imediatamente o cliente:
+  <br/>![Website](assets/01.website.png)
+
+- O cliente que não tem conta fornece nome, telefone e email. Após, insere um PIN (OTP) enviado por email para validar a segurança:
+  <br/>![Criar Conta](assets/02.criar_conta_cliente.png)  <br/>![Verificar Email](assets/03.verificar_email.png)  <br/>![Processos Cliente](assets/05.processos_cliente.png)
+
+- Abertura de um processo, sendo possível gerar um upload estruturado de itens essenciais:
+  <br/>![Novo Processo](assets/06.novo_processo.png)  <br/>![Upload de Docs](assets/07.upload_documentos.png)
+
 
 
 ##  :octocat: CONTRIBUIÇÕES AO PROJETO

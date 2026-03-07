@@ -119,6 +119,21 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 - `notificacoes`: Gerencia todos os disparos transacionais baseados em evento (event-driven) quando há mudanças nos processos.
 
 ---
+
+
+## 📁 ESTRUTURA DE PASTAS
+
+- <b>assets</b>: imagens utilizadas no projeto
+
+- <b>backend</b>: Arquivos do sistema backend, responsáveis pela API, lógica do sistema e integração com banco de dados e IA.
+  
+- <b>frontend<b>: Arquivos do sistema frontend, responsáveis pela interface do usuário.
+
+- <b>docs<b>: documentação técnica em pdf (Relatório do projeto e o Fluxo de Estados)
+
+- <b>README.md</b>: guia e explicação geral sobre o projeto
+
+---
 ## 🖥️ Demonstração do Sistema
 
 Esta seção apresenta uma visão prática da plataforma **YouVisa** desenvolvida na Sprint 3.  

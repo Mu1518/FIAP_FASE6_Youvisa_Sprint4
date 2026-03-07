@@ -84,27 +84,69 @@ Esses serviços permitem automatizar tarefas como **extração de dados de docum
 
 ---
 
-## 🚀 **USO ESTRATÉGICO DE INTELIGÊNCIA ARTIFICIAL**
+## 🚀 Uso Estratégico de Inteligência Artificial
 
-Nós aplicamos Inteligência Artificial de ponta em múltiplas camadas do produto para garantir velocidade, precisão e segurança durante todo o andamento processual. É fundamental destacar os seguintes usos de IA:
+A plataforma YouVisa utiliza Inteligência Artificial em múltiplas camadas do sistema para aumentar a eficiência operacional, reduzir erros humanos e melhorar a experiência do usuário durante o acompanhamento do processo de visto.
 
-### 1. Extração de Texto do Passaporte (OCR / Computer Vision)
-- Usando **Amazon Textract**, o sistema backend do admin consegue processar o passaporte do usuário imediatamente após o upload.
-- O texto e os dados tabulares são extraídos para validar informações vitais: confirmamos se o Nome Completo e a Data de Expiração extraídos conferem com o que foi preenchido no sistema automaticamente pelo Admin, agilizando aprovações e descartando inconsistências ou digitações incorretas.
+As principais aplicações de IA na solução são descritas a seguir:
 
-### 2. Comparação Facial e Biometria de Foto
-- Por meio do **Amazon Rekognition** (função *Compare Faces*), garantimos a identidade do solicitante comparando a foto de rosto que ele enviou espontaneamente com a foto biométrica impressa no passaporte carregado. Se a pontuação de similaridade atingir nossa margem de segurança configurada, a foto é identificada como a da mesma pessoa, sendo aprovada pela IA sem a necessidade de intervenção humana.
+### 1️⃣ Extração de Dados do Passaporte (OCR / Visão Computacional)
 
-### 3. Atendimento Inteligente e NLP via Chatbot
-- Implementado nativamente no frontend consumindo a API do **Google Gemini (LLM)**, fornecemos ao cliente um assistente 24/7.
-- O chatbot processa através de processamento de linguagem natural (NLP) a intenção do usuário, entendendo perguntas abertas como “O que está faltando entregar?”, “Quando meu visto de estudante chega?”, "O que acontece na etapa de documentos pendentes?".
-- Aplicamos as devidas proteções (guardrails): A IA não infere prazos precisos, nem toma decisões pela agência consular e nem faz promessas. Ela opera apenas traduzindo os estados técnicos para uma linguagem amigável.
+Utilizando o serviço **Amazon Textract**, o sistema é capaz de processar automaticamente o passaporte enviado pelo usuário logo após o upload.
 
-### 4. RAG e Contexto com Usuário Logado (Status de Processo)
-- O Chatbot foi enriquecido com a lógica avançada para injetar contexto (Retrieval-Augmented Generation / RAG conceitual) focada nos dados próprios do usuário logado.
-- Caso o usuário faça perguntas específicas como "Qual o status do MEU processo?", o chatbot obriga sua autenticação na mesma interface amigável (enviando senha OTP paro email no ato da conversa).
-- Uma vez autenticado, ele enriquece o contexto das requisições ao modelo Gemini injetando os históricos e status do banco de dados referenciando a conta logada do cliente. Isto faz com que a IA informe com total precisão como está o processo particular do cliente e quais as exatas pendências em falta.
+A tecnologia de OCR permite extrair informações estruturadas do documento, como:
 
+- Nome completo  
+- Número do documento  
+- Data de expiração  
+
+Esses dados são automaticamente comparados com as informações preenchidas no sistema, permitindo validar inconsistências e reduzir erros de digitação, acelerando o processo de análise documental.
+
+---
+
+### 2️⃣ Validação Biométrica por Comparação Facial
+
+Para reforçar a segurança da plataforma, utilizamos o serviço **Amazon Rekognition**, que realiza a comparação biométrica entre a foto enviada pelo usuário e a foto presente no passaporte.
+
+A funcionalidade **Compare Faces** calcula o nível de similaridade entre as imagens. Caso o índice ultrapasse o limite de confiança configurado no sistema, a identidade é validada automaticamente, reduzindo a necessidade de verificação manual pela equipe administrativa.
+
+---
+
+### 3️⃣ Atendimento Inteligente com Chatbot (LLM + NLP)
+
+O sistema incorpora um **Chatbot baseado em Inteligência Artificial**, integrado à API do **Google Gemini**, que oferece atendimento automatizado 24 horas por dia.
+
+Por meio de **Processamento de Linguagem Natural (NLP)**, o chatbot é capaz de compreender diferentes formas de perguntas feitas pelos usuários, como:
+
+- "O que ainda falta enviar no meu processo?"
+- "Qual é o status do meu visto?"
+- "O que significa documentos pendentes?"
+
+A IA interpreta a intenção da pergunta e responde utilizando uma linguagem simples e acessível.
+
+Para garantir segurança e confiabilidade, foram implementados **mecanismos de governança (guardrails)** que impedem a IA de:
+
+- inferir prazos de aprovação
+- tomar decisões institucionais
+- prometer resultados de processos consulares
+
+Dessa forma, a IA atua apenas como **assistente informativo**, traduzindo os estados técnicos do sistema para o usuário.
+
+---
+
+### 4️⃣ Contextualização de Respostas com Dados do Usuário (RAG)
+
+O chatbot também utiliza uma abordagem inspirada em **Retrieval-Augmented Generation (RAG)** para enriquecer suas respostas com dados reais do sistema.
+
+Quando o usuário faz perguntas específicas sobre seu próprio processo, como:
+
+> "Qual é o status do meu processo?"
+
+o sistema solicita **autenticação segura via código OTP enviado por e-mail**.
+
+Após a autenticação, o backend recupera as informações do processo diretamente do banco de dados e as inclui como contexto na consulta enviada ao modelo Gemini.
+
+Isso permite que o chatbot forneça respostas **precisas, contextualizadas e personalizadas**, evitando respostas genéricas ou imprecisas.
 ---
 
 ## 🗄️ BANCO DE DADOS EM NUVEM (POSTGRESQL)

@@ -15,9 +15,9 @@
 ## 👨‍🎓 Integrantes: 
 - <a href="https://www.linkedin.com/in/jonatasgomes">Jônatas Gomes Alves</a>
 - <a href="https://www.linkedin.com/in/iolanda-helena-fabbrini-manzali-de-oliveira-14ab8ab0">Iolanda Helena Fabbrini Manzali de Oliveira</a>
-- <a href="https://www.linkedin.com/company/inova-fusca">Murilo Carone Nasser</a> 
+- <a href="https://https://www.linkedin.com/in/murilo-nasser-563875323/">Murilo Carone Nasser</a> 
 - <a href="https://www.linkedin.com/in/pedro-eduardo-soares-de-sousa-439552309">Pedro Eduardo Soares de Sousa</a>
-- <a href= "https://www.linkedin.com/in/amanda-fragnan-b61537255">Amanda Fragnan<a>
+- <a href="https://www.linkedin.com/in/amanda-fragnan-b61537255">Amanda Fragnan<a>
 
 ## 👩‍🏫 Professores:
 ### Tutor(a) 
@@ -26,6 +26,22 @@
 - <a href="https://www.linkedin.com/company/inova-fusca">Andre Godoi Chaviato</a>
 
 ---
+## 📑 Sumário
+
+- Sobre o Projeto
+- Tecnologias Utilizadas
+- Uso Estratégico de Inteligência Artificial
+- Banco de Dados
+- Estrutura de Pastas
+- Fluxo de Estados
+- Demonstração do Sistema
+- Como Executar o Projeto
+- Contribuições
+- Histórico de Lançamentos
+- Licença
+
+---
+
 ## 🔍 Sobre o Projeto
 
 O **Projeto Sprint 3 – YOUVISA** representa a evolução da plataforma YouVisa para um sistema inteligente de **acompanhamento e gestão de processos de imigração e vistos**.
@@ -51,6 +67,29 @@ Essa abordagem permite **reduzir retrabalho, melhorar a experiência do usuário
 ![AWS](https://img.shields.io/badge/AWS-Textract_&_Rekognition-FF9900?logo=amazonaws)
 ![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
 
+---
+## 🛠 Stack Tecnológica
+
+### Frontend
+- Next.js 15
+- React 19
+- Tailwind CSS v4
+- TypeScript
+
+### Backend
+- Python 3.12
+- FastAPI
+- PostgreSQL (Neon)
+
+### Inteligência Artificial
+- Google Gemini
+- AWS Textract
+- AWS Rekognition
+
+### Infraestrutura
+- AWS
+- Neon Database
+ 
 ---
 
 ## 🛠 Tecnologias Utilizadas
@@ -149,7 +188,7 @@ Após a autenticação, o backend recupera as informações do processo diretame
 Isso permite que o chatbot forneça respostas **precisas, contextualizadas e personalizadas**, evitando respostas genéricas ou imprecisas.
 ---
 
-## 🗄️ BANCO DE DADOS EM NUVEM (POSTGRESQL)
+## 🗄️ Arquitetura de Banco de Dados
 
 O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **PostgreSQL através do serviço Neon.tech**. Todas as integrações a ele são feitas no backend em Python via SQL puro estruturado (sem uso de ORMs), visando entregar o mais alto desempenho com o controle estrito das interações.
 
@@ -171,9 +210,9 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 
 - <b>backend</b>: Arquivos do sistema backend, responsáveis pela API, lógica do sistema e integração com banco de dados e IA.
   
-- <b>frontend<b>: Arquivos do sistema frontend, responsáveis pela interface do usuário.
+- <b>frontend</b>: Arquivos do sistema frontend, responsáveis pela interface do usuário.
 
-- <b>docs<b>: documentação técnica em pdf (Relatório do projeto e o Fluxo de Estados)
+- <b>docs</b>: documentação técnica em PDF (Relatório do projeto e o Fluxo de Estados)
 
 - <b>README.md</b>: guia e explicação geral sobre o projeto
 
@@ -191,7 +230,7 @@ Recebido → Em Análise → Docs Pendentes → Em Análise → Em Processamento
 [Fluxo de Estados do Processo](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/docs/FLUXO_DE_ESTADOS.md)
 --- 
 
-## 🖥️ Demonstração do Sistema
+## 🖥️ Demonstração da Plataforma
 
 Esta seção apresenta uma visão prática da plataforma **YouVisa** desenvolvida na Sprint 3.  
 A seguir são exibidas as principais funcionalidades da aplicação, incluindo a experiência do usuário, o fluxo de criação de processos e as ferramentas administrativas apoiadas por Inteligência Artificial.
@@ -319,8 +358,16 @@ Após autenticado, o sistema consulta as informações do banco de dados e forne
 ![Atendimento Chatbot](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/16.chatbot_atendimento.png)
 ---
 
-## **COMO EXECUTAR O PROJETO MÚLTIPLAS PASTAS**
+## **🚀 Como Executar o Projeto**
+## ⚙️ Pré-requisitos
 
+Antes de executar o projeto, é necessário ter instalado:
+
+- Node.js 18+
+- Python 3.12+
+- Git
+- Conta AWS configurada
+- Chave da API Gemini
 O projeto é particionado em Frontend (Next.js) e Backend (FastAPI). Ambas as etapas precisam rodar.
 
 ### 1. Configurando e Rodando o Backend (FastAPI)
@@ -381,7 +428,7 @@ Seu Pull Request será revisado pela equipe e, se tudo estiver correto, será ac
 
 ## 🗃 Histórico de lançamentos
 
-* 1.0.0 - 03/11/2025
+*  1.0.0 - 07/03/2026
     
 
 ## 📋 Licença

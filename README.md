@@ -68,29 +68,6 @@ Essa abordagem permite **reduzir retrabalho, melhorar a experiência do usuário
 ![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
 
 ---
-## 🛠 Stack Tecnológica
-
-### Frontend
-- Next.js 15
-- React 19
-- Tailwind CSS v4
-- TypeScript
-
-### Backend
-- Python 3.12
-- FastAPI
-- PostgreSQL (Neon)
-
-### Inteligência Artificial
-- Google Gemini
-- AWS Textract
-- AWS Rekognition
-
-### Infraestrutura
-- AWS
-- Neon Database
- 
----
 
 ## 🛠 Tecnologias Utilizadas
 

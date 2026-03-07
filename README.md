@@ -77,21 +77,68 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 
 ---
 
-## 🖥️ PASSO A PASSO / DEMONSTRAÇÃO DO SISTEMA
+---
 
-*(Abaixo o registro imagético da plataforma YouVisa na Sprint 3).*
+## **🛠️ TECNOLOGIAS UTILIZADAS**
 
-### Visão Geral da Home e Criação de Processos
-- A Home page unifica serviços, informações adicionais e aciona imediatamente o cliente:
-  <br/>![Website]((https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/01.website.png)
+ **Frontend:**
+- [Next.js 15 (App Router)](https://nextjs.org/) + React 19
+- Tailwind CSS v4 + TypeScript
 
-- O cliente que não tem conta fornece nome, telefone e email. Após, a inserção dos dados deve verificar o email para insere um PIN (OTP) enviado por email para validar a segurança:
-  <br/>![Criar Conta](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/02.criar_conta_cliente.png)  <br/>![Verificar Email](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/03.verificar_email.png) <br/>![Código Enviado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/04.codigo_enviado.png) <br/>![Processos Cliente](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/05.processos_cliente.png)
+ **Backend & Serviços:**
+- Python 3.12 + FastAPI
+- PostgreSQL Nuvem Neon
+- Autenticação local JWT
 
-- Após efetuarAbertura de um processo, sendo possível gerar um upload estruturado de itens essenciais:
-  <br/>![Novo Processo](assets/06.novo_processo.png)  <br/>![Upload de Docs](assets/07.upload_documentos.png)
+ **Inteligência Artificial & Nuvem:**
+- [Google Gemini API](https://ai.google.dev/) (Integração NLP e Conversação)
+- [AWS Textract](https://aws.amazon.com/pt/textract/) (Leitura e OCR Semântico)
+- [AWS Rekognition](https://aws.amazon.com/pt/rekognition/) (Visão Computacional - Identity)
 
+---
 
+## **COMO EXECUTAR O PROJETO MÚLTIPLAS PASTAS**
+
+O projeto é particionado em Frontend (Next.js) e Backend (FastAPI). Ambas as etapas precisam rodar.
+
+### 1. Configurando e Rodando o Backend (FastAPI)
+```bash
+# 1. Entre na pasta backend pelo terminal
+cd backend
+
+# 2. Crie e ative um ambiente virtual 
+python -m venv venv
+# No mac/linux: source venv/bin/activate 
+# No Windows: venv\Scripts\activate
+
+# 3. Instale as dependências
+pip install -r requirements.txt
+
+# 4. Configure o arquivo de variáveis .env
+# Necessário definir chaves do banco (DATABASE_URL), AWS (Textract/Rekognition), SMTP e Gemini (GEMINI_API_KEY).
+# Siga a padronização exibida dentro do backend/CLAUDE.md
+
+# 5. Execute o servidor de backend que responderá na porta 8000
+python3 -m uvicorn main:app --reload
+```
+
+### 2. Configurando e Rodando o Frontend (Next.js)
+```bash
+# 1. Em outra aba de seu terminal, vá a pasta do app React
+cd frontend
+
+# 2. Instale as dependências Node
+npm install
+
+# 3. Configure a porta para a API
+# O único env vital neste caso e apontar NEXT_PUBLIC_API_URL=http://localhost:8000
+# Para a IA flutuante não falhar verifique estar com o Gemini API Keys também por lá, caso requisitado.
+
+# 4. Inicie o sistema
+npm run dev
+
+# Abra http://localhost:3000 em seu navegador
+```
 
 ##  :octocat: CONTRIBUIÇÕES AO PROJETO
 

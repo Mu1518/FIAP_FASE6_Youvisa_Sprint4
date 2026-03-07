@@ -66,9 +66,7 @@ Essa abordagem permite **reduzir retrabalho, melhorar a experiência do usuário
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql)
 ![AWS](https://img.shields.io/badge/AWS-Textract_&_Rekognition-FF9900?logo=amazonaws)
 ![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![License](https://img.shields.io/badge/license-CC--BY%204.0-blue)
-![FIAP](https://img.shields.io/badge/Projeto-FIAP-red)
+
 
 ---
 

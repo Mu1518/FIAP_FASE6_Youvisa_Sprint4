@@ -8,7 +8,7 @@
 
 #  **ENTERPRISE CHALLENGE - SPRINT 3 YOUVISA**
 
-![capa]
+![capa](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/Capa_Sprint3.png)
 
 ## Grupo 9
 

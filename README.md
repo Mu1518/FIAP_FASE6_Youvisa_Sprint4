@@ -26,7 +26,6 @@
 - <a href="https://www.linkedin.com/company/inova-fusca">Andre Godoi Chaviato</a>
 
 ---
-## 📑 Sumário
 
 ## 📑 Sumário
 
@@ -39,10 +38,6 @@
 - [Fluxo de Estados do Processo](#-fluxo-de-estados-do-processo)
 - [Principais Funcionalidades da Plataforma](#-principais-funcionalidades-da-plataforma)
 - [Demonstração da Plataforma](#️-demonstração-da-plataforma)
-- [Experiência do Usuário — Portal do Cliente](#-experiência-do-usuário--portal-do-cliente)
-- [Painel Administrativo e Uso de Inteligência Artificial](#️-painel-administrativo-e-uso-de-inteligência-artificial)
-- [Comunicações Automatizadas](#-comunicações-automatizadas)
-- [Atendimento Inteligente via Chatbot](#-atendimento-inteligente-via-chatbot)
 - [Como Executar o Projeto](#-como-executar-o-projeto)
 - [Contribuições ao Projeto](#-contribuições-ao-projeto)
 - [Histórico de Lançamentos](#-histórico-de-lançamentos)

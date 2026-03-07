@@ -28,16 +28,24 @@
 ---
 ## 📑 Sumário
 
+## 📑 Sumário
+
 - [Sobre o Projeto](#-sobre-o-projeto)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Arquitetura da Plataforma](#-arquitetura-da-plataforma)
 - [Uso Estratégico de Inteligência Artificial](#-uso-estratégico-de-inteligência-artificial)
-- [Banco de Dados](#️-arquitetura-de-banco-de-dados)
+- [Arquitetura de Banco de Dados](#️-arquitetura-de-banco-de-dados)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
-- [Fluxo de Estados](#-fluxo-de-estados-do-processo)
-- [Demonstração do Sistema](#️-demonstração-da-plataforma)
+- [Fluxo de Estados do Processo](#-fluxo-de-estados-do-processo)
+- [Principais Funcionalidades da Plataforma](#-principais-funcionalidades-da-plataforma)
+- [Demonstração da Plataforma](#️-demonstração-da-plataforma)
+- [Experiência do Usuário — Portal do Cliente](#-experiência-do-usuário--portal-do-cliente)
+- [Painel Administrativo e Uso de Inteligência Artificial](#️-painel-administrativo-e-uso-de-inteligência-artificial)
+- [Comunicações Automatizadas](#-comunicações-automatizadas)
+- [Atendimento Inteligente via Chatbot](#-atendimento-inteligente-via-chatbot)
 - [Como Executar o Projeto](#-como-executar-o-projeto)
-- [Contribuições](#-contribuições-ao-projeto)
-- [Histórico](#-histórico-de-lançamentos)
+- [Contribuições ao Projeto](#-contribuições-ao-projeto)
+- [Histórico de Lançamentos](#-histórico-de-lançamentos)
 - [Licença](#-licença)
 
 ---
@@ -98,6 +106,23 @@ O backend foi desenvolvido utilizando **FastAPI**, framework moderno e de alto d
 - [AWS Rekognition](https://aws.amazon.com/pt/rekognition/) — utilizado para **validação biométrica por comparação facial**
 
 Esses serviços permitem automatizar tarefas como **extração de dados de documentos, validação de identidade e atendimento inteligente ao cliente**, aumentando a eficiência e confiabilidade da plataforma.
+
+---
+## 🏗 Arquitetura da Plataforma
+
+A plataforma **YouVisa** foi projetada seguindo uma arquitetura moderna baseada na separação entre **frontend, backend e serviços cognitivos em nuvem**, garantindo escalabilidade, segurança e facilidade de manutenção.
+
+- **Frontend:** desenvolvido em **Next.js 15 + React 19 + TypeScript**, responsável pela interface do usuário, dashboards e acompanhamento dos processos.
+
+- **Backend:** implementado em **Python 3.12 com FastAPI**, responsável pelas regras de negócio, controle do fluxo de processos, autenticação e integração com serviços externos.
+
+- **Banco de Dados:** **PostgreSQL hospedado no Neon.tech**, utilizando **SQL puro** para maior controle e desempenho nas consultas.
+
+- **Arquitetura Event-Driven:** mudanças de status dos processos geram eventos automáticos que acionam notificações, auditoria e atualização das interfaces do sistema.
+
+- **Serviços de Inteligência Artificial:** integração com **Amazon Textract** (OCR de documentos), **Amazon Rekognition** (validação biométrica) e **Google Gemini** (chatbot com NLP), permitindo automação e suporte inteligente ao usuário.
+
+Essa arquitetura permite que o sistema ofereça **automação, rastreabilidade e maior eficiência no acompanhamento de processos de visto**.
 
 ---
 

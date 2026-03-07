@@ -134,6 +134,19 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 - <b>README.md</b>: guia e explicação geral sobre o projeto
 
 ---
+## 🔄 Fluxo de Estados do Processo
+
+O sistema YouVisa utiliza uma **máquina de estados** para controlar o ciclo de vida de cada solicitação de visto.  
+Cada transição de estado é registrada no backend e pode gerar eventos automáticos, como envio de e-mails e atualização do painel do cliente.
+
+Fluxo principal:
+
+Recebido → Em Análise → Docs Pendentes → Em Análise → Em Processamento → Aprovado / Rejeitado
+
+📄 Documentação completa:  
+[Fluxo de Estados do Processo]()
+--- 
+
 ## 🖥️ Demonstração do Sistema
 
 Esta seção apresenta uma visão prática da plataforma **YouVisa** desenvolvida na Sprint 3.  

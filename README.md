@@ -137,9 +137,9 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 
 ---
 ## 🔄 Fluxo de Estados do Processo
-![fluxo de estado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/fluxo_estados.png)
 O sistema YouVisa utiliza uma **máquina de estados** para controlar o ciclo de vida de cada solicitação de visto.  
 Cada transição de estado é registrada no backend e pode gerar eventos automáticos, como envio de e-mails e atualização do painel do cliente.
+![fluxo de estado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/fluxo_estados.png)
 
 Fluxo principal:
 

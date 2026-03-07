@@ -85,10 +85,10 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 - A Home page unifica serviços, informações adicionais e aciona imediatamente o cliente:
   <br/>![Website]((https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/01.website.png)
 
-- O cliente que não tem conta fornece nome, telefone e email. Após, insere um PIN (OTP) enviado por email para validar a segurança:
-  <br/>![Criar Conta](assets/02.criar_conta_cliente.png)  <br/>![Verificar Email](assets/03.verificar_email.png)  <br/>![Processos Cliente](assets/05.processos_cliente.png)
+- O cliente que não tem conta fornece nome, telefone e email. Após, a inserção dos dados deve verificar o email para insere um PIN (OTP) enviado por email para validar a segurança:
+  <br/>![Criar Conta](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/02.criar_conta_cliente.png)  <br/>![Verificar Email](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/03.verificar_email.png) <br/>![Código Enviado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/04.codigo_enviado.png) <br/>![Processos Cliente](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/05.processos_cliente.png)
 
-- Abertura de um processo, sendo possível gerar um upload estruturado de itens essenciais:
+- Após efetuarAbertura de um processo, sendo possível gerar um upload estruturado de itens essenciais:
   <br/>![Novo Processo](assets/06.novo_processo.png)  <br/>![Upload de Docs](assets/07.upload_documentos.png)
 
 

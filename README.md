@@ -1,7 +1,7 @@
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
-<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width=40% height=40%></a>
 </p>
 
 <br>
@@ -28,17 +28,17 @@
 ---
 ## 📑 Sumário
 
-- Sobre o Projeto
-- Tecnologias Utilizadas
-- Uso Estratégico de Inteligência Artificial
-- Banco de Dados
-- Estrutura de Pastas
-- Fluxo de Estados
-- Demonstração do Sistema
-- Como Executar o Projeto
-- Contribuições
-- Histórico de Lançamentos
-- Licença
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Uso Estratégico de Inteligência Artificial](#-uso-estratégico-de-inteligência-artificial)
+- [Banco de Dados](#️-arquitetura-de-banco-de-dados)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Fluxo de Estados](#-fluxo-de-estados-do-processo)
+- [Demonstração do Sistema](#️-demonstração-da-plataforma)
+- [Como Executar o Projeto](#-como-executar-o-projeto)
+- [Contribuições](#-contribuições-ao-projeto)
+- [Histórico](#-histórico-de-lançamentos)
+- [Licença](#-licença)
 
 ---
 
@@ -66,6 +66,9 @@ Essa abordagem permite **reduzir retrabalho, melhorar a experiência do usuário
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql)
 ![AWS](https://img.shields.io/badge/AWS-Textract_&_Rekognition-FF9900?logo=amazonaws)
 ![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![License](https://img.shields.io/badge/license-CC--BY%204.0-blue)
+![FIAP](https://img.shields.io/badge/Projeto-FIAP-red)
 
 ---
 
@@ -206,6 +209,15 @@ Recebido → Em Análise → Docs Pendentes → Em Análise → Em Processamento
 📄 Documentação completa:  
 [Fluxo de Estados do Processo](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/docs/FLUXO_DE_ESTADOS.md)
 --- 
+## ✨ Principais Funcionalidades da Plataforma
+
+- Cadastro e autenticação via OTP
+- Upload de documentos para processos de visto
+- Máquina de estados para controle do processo
+- Validação automática de documentos com IA
+- Comparação biométrica com AWS Rekognition
+- Notificações automáticas por e-mail
+- Chatbot inteligente para consulta de processos
 
 ## 🖥️ Demonstração da Plataforma
 

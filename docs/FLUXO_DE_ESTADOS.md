@@ -28,7 +28,7 @@ Abaixo estão as especificações do que acontece exatamente no **backend** cada
 | `Em Processamento` | `Rejeitado` | **Admin** | <ul><li>**Auditoria:** Log contendo a objeção consular.</li><li>**Email:** "Aviso importante sobre seu visto (Negado)."</li></ul> |
 | `(Qualquer)` | `Cancelado` | **Admin** | <ul><li>**Auditoria:** Cancelamento manual ou abandono.</li><li>**Email:** "Notificação de Cancelamento de Processo."</li></ul> |
 
-![Fluxo de Estados](assets/diagrama_fluxo_estados.png)
+![Fluxo de Estados]([assets/diagrama_fluxo_estados.png](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/diagrama_fluxo_estados.png))
 
 ---
 

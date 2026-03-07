@@ -82,6 +82,8 @@ O backend foi desenvolvido utilizando **FastAPI**, framework moderno e de alto d
 
 Esses serviços permitem automatizar tarefas como **extração de dados de documentos, validação de identidade e atendimento inteligente ao cliente**, aumentando a eficiência e confiabilidade da plataforma.
 
+---
+
 ## 🚀 **USO ESTRATÉGICO DE INTELIGÊNCIA ARTIFICIAL**
 
 Nós aplicamos Inteligência Artificial de ponta em múltiplas camadas do produto para garantir velocidade, precisão e segurança durante todo o andamento processual. É fundamental destacar os seguintes usos de IA:
@@ -144,7 +146,7 @@ Fluxo principal:
 Recebido → Em Análise → Docs Pendentes → Em Análise → Em Processamento → Aprovado / Rejeitado
 
 📄 Documentação completa:  
-[Fluxo de Estados do Processo]()
+[Fluxo de Estados do Processo](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/docs/FLUXO_DE_ESTADOS.md)
 --- 
 
 ## 🖥️ Demonstração do Sistema

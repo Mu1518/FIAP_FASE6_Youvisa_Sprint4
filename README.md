@@ -56,6 +56,61 @@ Focamos na comunicação clara com o cliente: notificações automatizadas de mu
 - [AWS Rekognition](https://aws.amazon.com/pt/rekognition/) (Visão Computacional - Identity)
 
 ---
+## 🔍 Sobre o Projeto
+
+O **Projeto Sprint 3 – YOUVISA** representa a evolução da plataforma YouVisa para um sistema inteligente de **acompanhamento e gestão de processos de imigração e vistos**.
+
+Nesta etapa do desafio, a plataforma deixa de atuar apenas como uma ferramenta de **recebimento de documentos**, passando a funcionar como uma **plataforma proativa, orientada a eventos (event-driven)** e apoiada por **Inteligência Artificial**, capaz de gerenciar todo o ciclo de vida de cada solicitação.
+
+A solução desenvolvida prioriza **transparência e comunicação com o cliente**, permitindo que os usuários acompanhem o andamento de seus processos de forma clara e contínua. Para isso, foram implementados:
+
+- **Notificações automáticas** sempre que ocorre mudança no status do processo  
+- **Interface visual com linha do tempo**, permitindo acompanhar cada etapa do processo  
+- **Chatbot com IA Generativa**, capaz de interpretar intenções do usuário e responder perguntas sobre o andamento do processo em linguagem simples e acessível  
+
+Além disso, a plataforma utiliza **mecanismos de validação automática de documentos por IA**, auxiliando a equipe administrativa na análise das informações enviadas pelos clientes e aumentando a eficiência operacional do sistema.
+
+Essa abordagem permite **reduzir retrabalho, melhorar a experiência do usuário e escalar o atendimento**, transformando o sistema em um assistente inteligente para acompanhamento de processos de visto.
+
+---
+
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql)
+![AWS](https://img.shields.io/badge/AWS-Textract_&_Rekognition-FF9900?logo=amazonaws)
+![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+### Frontend
+- [Next.js 15 (App Router)](https://nextjs.org/) + React 19  
+- Tailwind CSS v4  
+- TypeScript  
+
+O Next.js é um framework React amplamente utilizado para construção de aplicações web modernas, oferecendo recursos como **renderização no servidor (SSR), geração estática de páginas e roteamento otimizado**, melhorando desempenho e experiência do usuário. :contentReference[oaicite:0]{index=0}
+
+---
+
+### Backend & Serviços
+- Python 3.12  
+- FastAPI  
+- PostgreSQL (Neon Cloud)  
+- Autenticação baseada em JWT  
+
+O backend foi desenvolvido utilizando **FastAPI**, framework moderno e de alto desempenho para criação de APIs em Python, responsável por gerenciar os processos, autenticação e integração com os serviços externos.
+
+---
+
+### Inteligência Artificial & Serviços em Nuvem
+
+- [Google Gemini API](https://ai.google.dev/) — responsável pelo processamento de linguagem natural (NLP) e pelas respostas conversacionais do chatbot  
+- [AWS Textract](https://aws.amazon.com/pt/textract/) — utilizado para **extração automática de dados de documentos (OCR semântico)**  
+- [AWS Rekognition](https://aws.amazon.com/pt/rekognition/) — utilizado para **validação biométrica por comparação facial**
+
+Esses serviços permitem automatizar tarefas como **extração de dados de documentos, validação de identidade e atendimento inteligente ao cliente**, aumentando a eficiência e confiabilidade da plataforma.
 
 ## 🚀 **USO ESTRATÉGICO DE INTELIGÊNCIA ARTIFICIAL**
 

@@ -9,7 +9,7 @@ Este documento detalha o ciclo de vida de um processo de visto na plataforma You
 
 As transições são rigidamente controladas pelo backend (FastAPI), impedindo que processos pulem etapas necessárias ou retornem a estados inválidos. 
 
-![Fluxo de Estados](assets/fluxo_estados.png)
+![Fluxo de Estados](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/fluxo_estados.png)
 
 ---
 

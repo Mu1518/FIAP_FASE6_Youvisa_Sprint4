@@ -206,9 +206,7 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 
 - <b>assets</b>: imagens utilizadas no projeto
 
-- <b>backend</b>: Arquivos do sistema backend, responsáveis pela API, lógica do sistema e integração com banco de dados e IA.
-  
-- <b>frontend</b>: Arquivos do sistema frontend, responsáveis pela interface do usuário.
+- <b>src</b>: Arquivos do sistema backend, responsáveis pela API, lógica do sistema e integração com banco de dados e IA e Arquivos do sistema frontend, responsáveis pela interface do usuário
 
 - <b>docs</b>: documentação técnica em PDF (Relatório do projeto e o Fluxo de Estados)
 

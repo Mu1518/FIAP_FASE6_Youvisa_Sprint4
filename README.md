@@ -440,7 +440,7 @@ Assista ao vídeo e veja a ideia central da plataforma
 
 Assista ao vídeo e veja como faz para se cadastar e como funciana pagina de administrador(funcionário)
 
-[Clique para Assistir]([https://youtu.be/f8mrI1JxSdE](https://youtu.be/IHyLbsFLwzo])
+[Clique para Assistir](https://youtu.be/IHyLbsFLwzo])
 ## 🗃 Histórico de lançamentos
 
 *  1.0.0 - 07/03/2026

@@ -415,7 +415,7 @@ npm run dev
 
 # Abra http://localhost:3000 em seu navegador
 ```
-
+---
 ##  :octocat: CONTRIBUIÇÕES AO PROJETO
 
 Ficamos muito felizes com a sua contribuição e valorizamos cada sugestão e esforço dedicado a aprimorá-lo.
@@ -432,7 +432,17 @@ Como Contribuir:
 
 Seu Pull Request será revisado pela equipe e, se tudo estiver correto, será aceito e suas contribuições serão integradas ao projeto 😃!
 
+---
+## **VIDEO EXPLICATIVO**
 
+Assista ao vídeo e veja a ideia central da plataforma
+
+[Clique para Assistir](https://youtu.be/lYtCkQpfYj4)
+## **VIDEO DEMONSTRATIVO**
+
+Assista ao vídeo e veja como faz para se cadastar e como funciana pagina de administrador(funcionário)
+
+[Clique para Assistir]([https://youtu.be/f8mrI1JxSdE](https://youtu.be/IHyLbsFLwzo))
 ## 🗃 Histórico de lançamentos
 
 *  1.0.0 - 07/03/2026

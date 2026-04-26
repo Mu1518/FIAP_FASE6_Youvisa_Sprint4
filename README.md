@@ -8,9 +8,9 @@
 
 #  **ENTERPRISE CHALLENGE - SPRINT 3 YOUVISA**
 
-![capa](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/Capa_Sprint3.png)
+![capa]
 
-## Grupo 9
+## Grupo 34
 
 ## 👨‍🎓 Integrantes: 
 - <a href="https://www.linkedin.com/in/jonatasgomes">Jônatas Gomes Alves</a>

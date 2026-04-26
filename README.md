@@ -8,7 +8,7 @@
 
 #  **ENTERPRISE CHALLENGE - SPRINT 3 YOUVISA**
 
-![capa]
+![capa](https://github.com/Mu1518/FIAP_FASE6_Youvisa_Sprint4/blob/main/assets/Capa%20do%20projeto.png)
 
 ## Grupo 34
 

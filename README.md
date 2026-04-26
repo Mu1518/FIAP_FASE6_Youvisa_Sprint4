@@ -30,36 +30,29 @@
 ## 📑 Sumário
 
 - [Sobre o Projeto](#-sobre-o-projeto)
+- [Objetivos da Sprint 4](#-objetivos-da-sprint-4)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Arquitetura da Plataforma](#-arquitetura-da-plataforma)
-- [Uso Estratégico de Inteligência Artificial](#-uso-estratégico-de-inteligência-artificial)
-- [Arquitetura de Banco de Dados](#️-arquitetura-de-banco-de-dados)
+- [Arquitetura da Solução](#-arquitetura-da-solução)
+- [Fluxo de Agentes Inteligentes](#-fluxo-de-agentes-inteligentes)
+- [Processamento de Linguagem Natural (NLP)](#-processamento-de-linguagem-natural-nlp)
+- [Registro de Interações e Logs](#-registro-de-interações-e-logs)
+- [Governança e Segurança de IA](#-governança-e-segurança-de-ia)
+- [Arquitetura de Banco de Dados](#-arquitetura-de-banco-de-dados)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
-- [Fluxo de Estados do Processo](#-fluxo-de-estados-do-processo)
-- [Principais Funcionalidades da Plataforma](#-principais-funcionalidades-da-plataforma)
-- [Demonstração da Plataforma](#️-demonstração-da-plataforma)
+- [Fluxo Operacional da Plataforma](#-fluxo-operacional-da-plataforma)
+- [Principais Funcionalidades](#-principais-funcionalidades)
+- [Demonstração da Plataforma](#-demonstração-da-plataforma)
 - [Como Executar o Projeto](#-como-executar-o-projeto)
 - [Contribuições ao Projeto](#-contribuições-ao-projeto)
 - [Histórico de Lançamentos](#-histórico-de-lançamentos)
 - [Licença](#-licença)
+```
 
 ---
 
 ## 🔍 Sobre o Projeto
 
-O **Projeto Sprint 3 – YOUVISA** representa a evolução da plataforma YouVisa para um sistema inteligente de **acompanhamento e gestão de processos de imigração e vistos**.
-
-Nesta etapa do desafio, a plataforma deixa de atuar apenas como uma ferramenta de **recebimento de documentos**, passando a funcionar como uma **plataforma proativa, orientada a eventos (event-driven)** e apoiada por **Inteligência Artificial**, capaz de gerenciar todo o ciclo de vida de cada solicitação.
-
-A solução desenvolvida prioriza **transparência e comunicação com o cliente**, permitindo que os usuários acompanhem o andamento de seus processos de forma clara e contínua. Para isso, foram implementados:
-
-- **Notificações automáticas** sempre que ocorre mudança no status do processo  
-- **Interface visual com linha do tempo**, permitindo acompanhar cada etapa do processo  
-- **Chatbot com IA Generativa**, capaz de interpretar intenções do usuário e responder perguntas sobre o andamento do processo em linguagem simples e acessível  
-
-Além disso, a plataforma utiliza **mecanismos de validação automática de documentos por IA**, auxiliando a equipe administrativa na análise das informações enviadas pelos clientes e aumentando a eficiência operacional do sistema.
-
-Essa abordagem permite **reduzir retrabalho, melhorar a experiência do usuário e escalar o atendimento**, transformando o sistema em um assistente inteligente para acompanhamento de processos de visto.
+O **YOUVISA Sprint 4** representa a evolução da plataforma para um modelo de atendimento inteligente integrado. Nesta fase, o foco está em conectar os módulos desenvolvidos anteriormente — acompanhamento de processos, chatbot e automações — em uma arquitetura única, capaz de interpretar solicitações, consultar informações e registrar interações em tempo real. A proposta central é transformar o sistema em uma plataforma digital escalável, eficiente e orientada à experiência do usuário.
 
 ---
 

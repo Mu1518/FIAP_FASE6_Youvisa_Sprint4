@@ -1,187 +1,152 @@
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
-<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width=40% height=40%></a>
+<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
 </p>
 
 <br>
 
-#  **ENTERPRISE CHALLENGE - SPRINT 3 YOUVISA**
+# **ENTERPRISE CHALLENGE - SPRINT 4 YOUVISA**
 
-![capa](https://github.com/Mu1518/FIAP_FASE6_Youvisa_Sprint4/blob/main/assets/Capa%20do%20projeto.png)
+## GRUPO 4
 
-## Grupo 34
-
-## 👨‍🎓 Integrantes: 
+## 👨‍🎓 Integrantes:
+- <a href= "https://www.linkedin.com/in/amanda-fragnan-b61537255">Amanda Fragnan</a>
+- <a href="https://www.linkedin.com/in/iolanda-helena-fabbrini-manzali-de-oliveira-14ab8ab0">Iolanda Manzali</a>
 - <a href="https://www.linkedin.com/in/jonatasgomes">Jônatas Gomes Alves</a>
-- <a href="https://www.linkedin.com/in/iolanda-helena-fabbrini-manzali-de-oliveira-14ab8ab0">Iolanda Helena Fabbrini Manzali de Oliveira</a>
-- <a href="https://https://www.linkedin.com/in/murilo-nasser-563875323/">Murilo Carone Nasser</a> 
+- <a href="https://www.linkedin.com/company/inova-fusca">Murilo Carone Nasser</a>
 - <a href="https://www.linkedin.com/in/pedro-eduardo-soares-de-sousa-439552309">Pedro Eduardo Soares de Sousa</a>
-- <a href="https://www.linkedin.com/in/amanda-fragnan-b61537255">Amanda Fragnan<a>
 
 ## 👩‍🏫 Professores:
-### Tutor(a) 
+### Tutor(a)
 - <a href="https://www.linkedin.com/in/leonardoorabona">Leonardo Ruiz Orabona</a>
 ### Coordenador(a)
 - <a href="https://www.linkedin.com/company/inova-fusca">Andre Godoi Chaviato</a>
 
+## **🌎 SOBRE O PROJETO**
+
+O **PROJETO SPRINT 4 YOUVISA** consolida toda a evolução das sprints anteriores em uma **plataforma de atendimento inteligente** orientada a agentes. A solução conecta automação, comunicação com o usuário, processamento de linguagem natural e governança de IA em um fluxo unificado, permitindo que diferentes módulos do sistema atuem de forma coordenada para receber documentos, interpretar perguntas, registrar interações e acompanhar o ciclo de vida de cada processo de visto.
+
+Nesta etapa, o chatbot deixa de ser um componente isolado e se torna o **ponto central de orquestração multiagente**: um agente classificador identifica a intenção do usuário (Intent Classification + extração de entidades), um agente de contexto consulta o banco de dados via APIs internas e um agente generativo (Gemini) produz a resposta sob *guardrails* rígidos. Todas as interações são registradas em logs estruturados, permitindo rastreabilidade e auditoria do atendimento.
+
 ---
 
-## 📑 Sumário
+## 🧠 **FLUXO DE ATENDIMENTO AUTOMATIZADO (SPRINT 4)**
 
-- [Sobre o Projeto](#-sobre-o-projeto)
-- [Objetivos da Sprint 4](#-objetivos-da-sprint-4)
-- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Arquitetura da Solução](#-arquitetura-da-solução)
-- [Fluxo de Agentes Inteligentes](#-fluxo-de-agentes-inteligentes)
-- [Processamento de Linguagem Natural (NLP)](#-processamento-de-linguagem-natural-nlp)
-- [Registro de Interações e Logs](#-registro-de-interações-e-logs)
-- [Governança e Segurança de IA](#-governança-e-segurança-de-ia)
-- [Arquitetura de Banco de Dados](#-arquitetura-de-banco-de-dados)
-- [Estrutura de Pastas](#-estrutura-de-pastas)
-- [Fluxo Operacional da Plataforma](#-fluxo-operacional-da-plataforma)
-- [Principais Funcionalidades](#-principais-funcionalidades)
-- [Demonstração da Plataforma](#-demonstração-da-plataforma)
-- [Como Executar o Projeto](#-como-executar-o-projeto)
-- [Contribuições ao Projeto](#-contribuições-ao-projeto)
-- [Histórico de Lançamentos](#-histórico-de-lançamentos)
-- [Licença](#-licença)
+O atendimento foi modelado como um **pipeline de agentes inteligentes** acionado tanto pelo chatbot do site (`/chatbot`) quanto pelo bot do Telegram. Cada mensagem do usuário percorre as seguintes etapas:
+
+### 1. Recepção e Pré-processamento (Input Guardrails)
+- Entrada recebida no `services_chatbot.py` (web) ou `telegram_bot.py` (Telegram).
+- Filtragem de entrada e sanitização contra **Prompt Injection** (delimitação de escopo, remoção de instruções suspeitas, limites de tamanho).
+- Identificação da sessão (`session_id`) e, quando aplicável, do usuário autenticado via JWT.
+
+### 2. Agente de Classificação de Intenção (NLP)
+- Aplica **Intent Classification** sobre a mensagem para enquadrá-la em categorias como: `pergunta_geral`, `status_processo`, `documentos_pendentes`, `proximo_passo`, `analise_caso`, `solicitacao_alteracao`, `human_handoff`.
+- Extrai entidades relevantes (tipo de visto, país, número de processo, tipo de documento).
+- Implementado com prompt engineering estruturado sobre o **Google Gemini**, com exemplos guiados (few-shot) que limitam o conjunto de saídas possíveis.
+
+### 3. Agente de Autenticação Condicional
+- Se a intenção exige dados privados (status, documentos, alteração), o agente força o fluxo de **login OTP** dentro da própria conversa (mesmo fluxo do site).
+- Para perguntas gerais, o usuário segue sem autenticação.
+
+### 4. Agente de Contexto (RAG conceitual)
+- Consulta APIs internas do FastAPI (`services.py`, `services_copilot.py`) para recuperar dados estruturados: processos do usuário, status atual, transições, documentos enviados, requisitos do visto, relatório de prontidão.
+- Os dados retornados são injetados no prompt como **contexto controlado**, garantindo que o modelo responda apenas com base em fatos do banco.
+
+### 5. Agente Generativo (Resposta com Guardrails)
+- O Gemini recebe um prompt estruturado contendo: persona, regras de negócio, escopo permitido, contexto do usuário e a pergunta.
+- **Guardrails aplicados**: a IA não infere prazos, não toma decisões consulares, não promete aprovações e traduz estados técnicos em linguagem acessível.
+- Para intenções de alteração de dados, a IA orienta o usuário a usar o dashboard, sem executar mutações diretas.
+
+### 6. Registro Estruturado da Interação
+- Cada turno (pergunta + resposta + intenção + entidades + `session_id` + timestamp + usuário) é persistido em tabela dedicada de logs no Oracle.
+- Esses registros alimentam o histórico de atendimento, métricas de governança e auditoria de IA.
+
+### 7. Notificações e Handoff
+- Eventos relevantes (mudança de status, prontidão < 70, solicitação de humano) disparam notificações **dual-channel** (e-mail HTML + Telegram) via `event_bus.py`.
+- Em caso de *human handoff*, o atendimento é transferido bidirecionalmente entre o admin (dashboard) e o usuário (Telegram/web).
+
+---
+
+## 🧩 **ORGANIZAÇÃO DOS COMPONENTES DO SISTEMA**
+
+A plataforma adota uma **arquitetura modular baseada em serviços**, com separação clara entre apresentação, orquestração de agentes, regras de negócio, integração com IA e persistência.
+
+```
+youvisa-sprint3/
+├── frontend/                  → Next.js 15 (App Router) + React 19 + Tailwind v4
+│   ├── app/                   → Rotas (home, /sobre, /servicos, /dashboard, /admin, /chatbot)
+│   ├── components/            → Navbar, Timeline, ChatWidget, Modais, Cards
+│   ├── hooks/                 → Hooks de auth, fetch, sessão de chat
+│   └── lib/                   → Cliente de API, helpers de JWT, utils
+│
+├── backend/                   → FastAPI + oracledb (SQL puro, sem ORM)
+│   ├── main.py                → Bootstrap FastAPI, CORS, roteamento
+│   ├── config.py              → Carregamento de .env (JWT, Gemini, AWS, SMTP, Telegram)
+│   ├── database.py            → Pool oracledb + DictCursor (tradução PostgreSQL→Oracle)
+│   ├── auth.py                → OTP por e-mail, emissão/validação de JWT
+│   ├── services.py            → CRUD de processos, documentos, transições, requisitos
+│   ├── services_ai.py         → Integrações AWS Textract (OCR) e Rekognition (face match)
+│   ├── services_chatbot.py    → Orquestração multiagente (intent → contexto → resposta)
+│   ├── services_copilot.py    → Copiloto de Prontidão (Gemini com function calling)
+│   ├── services_telegram.py   → Vinculação, mensagens e uploads via Telegram
+│   ├── telegram_bot.py        → Worker do bot Telegram (long polling)
+│   ├── telegram_templates.py  → Templates de mensagens push
+│   ├── event_bus.py           → Pub/Sub interno: dispara e-mails e Telegram em mudanças
+│   └── uploads/               → Armazenamento local de documentos
+│
+└── CLAUDE.md / SPRINT_4.md    → Contexto e requisitos da sprint
 ```
 
----
+### Camadas lógicas
+- **Camada de Apresentação (frontend):** UCD (User-Centered Design) — dashboard com timeline do processo, histórico de interações, chatbot embutido e área administrativa.
+- **Camada de API (FastAPI):** endpoints REST que expõem processos, documentos, autenticação e o pipeline do chatbot.
+- **Camada de Orquestração de Agentes:** `services_chatbot.py` e `services_copilot.py` coordenam os agentes (classificador, contexto, generativo, function-calling).
+- **Camada de IA Externa:** Gemini (LLM/NLP), AWS Textract (OCR) e AWS Rekognition (biometria).
+- **Camada de Eventos:** `event_bus.py` desacopla mudanças de estado das notificações (e-mail + Telegram).
+- **Camada de Dados:** Oracle Autonomous Database — tabelas `usuarios`, `funcionarios`, `codigos_otp`, `processos`, `documentos`, `transicoes_processo`, `notificacoes`, `requisitos_visto` e logs estruturados de chatbot.
 
-## 🔍 Sobre o Projeto
+### Governança de IA
+- **Prompt Engineering**: prompts versionados, com persona, escopo e exemplos few-shot.
+- **Prompt Injection Protection**: sanitização de entrada, delimitadores de contexto, lista de tópicos permitidos.
+- **Rastreabilidade**: todo turno do chatbot é logado (pergunta, resposta, intenção, sessão, timestamp).
+- **Limites de decisão**: a IA nunca aprova processos, define prazos ou substitui o admin — apenas informa, orienta e registra.
 
-O **YOUVISA Sprint 4** representa a evolução da plataforma para um modelo de atendimento inteligente integrado. Nesta fase, o foco está em conectar os módulos desenvolvidos anteriormente — acompanhamento de processos, chatbot e automações — em uma arquitetura única, capaz de interpretar solicitações, consultar informações e registrar interações em tempo real. A proposta central é transformar o sistema em uma plataforma digital escalável, eficiente e orientada à experiência do usuário.
-
----
-
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql)
-![AWS](https://img.shields.io/badge/AWS-Textract_&_Rekognition-FF9900?logo=amazonaws)
-![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
-
-
----
-
-## 🛠 Tecnologias Utilizadas
-
-### Frontend
-- [Next.js 15 (App Router)](https://nextjs.org/) + React 19  
-- Tailwind CSS v4  
-- TypeScript  
-
-O Next.js é um framework React amplamente utilizado para construção de aplicações web modernas, oferecendo recursos como **renderização no servidor (SSR), geração estática de páginas e roteamento otimizado**, melhorando desempenho e experiência do usuário.
+![alt text](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![alt text](https://img.shields.io/badge/React-19-blue?logo=react)
+![alt text](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi)
+![alt text](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql)
+![alt text](https://img.shields.io/badge/AWS-Textract_&_Rekognition-FF9900?logo=amazonaws)
+![alt text](https://img.shields.io/badge/AI-Google_Gemini-8E75B2?logo=google)
 
 ---
 
-### Backend & Serviços
-- Python 3.12  
-- FastAPI  
-- PostgreSQL (Neon Cloud)  
-- Autenticação baseada em JWT  
+## 🚀 **USO ESTRATÉGICO DE INTELIGÊNCIA ARTIFICIAL**
 
-O backend foi desenvolvido utilizando **FastAPI**, framework moderno e de alto desempenho para criação de APIs em Python, responsável por gerenciar os processos, autenticação e integração com os serviços externos.
+Nós aplicamos Inteligência Artificial de ponta em múltiplas camadas do produto para garantir velocidade, precisão e segurança durante todo o andamento processual. É fundamental destacar os seguintes usos de IA:
 
----
+### 1. Extração de Texto do Passaporte (OCR / Computer Vision)
+- Usando **Amazon Textract**, o sistema backend do admin consegue processar o passaporte do usuário imediatamente após o upload.
+- O texto e os dados tabulares são extraídos para validar informações vitais: confirmamos se o Nome Completo e a Data de Expiração extraídos conferem com o que foi preenchido no sistema automaticamente pelo Admin, agilizando aprovações e descartando inconsistências ou digitações incorretas.
 
-### Inteligência Artificial & Serviços em Nuvem
+### 2. Comparação Facial e Biometria de Foto
+- Por meio do **Amazon Rekognition** (função *Compare Faces*), garantimos a identidade do solicitante comparando a foto de rosto que ele enviou espontaneamente com a foto biométrica impressa no passaporte carregado. Se a pontuação de similaridade atingir nossa margem de segurança configurada, a foto é identificada como a da mesma pessoa, sendo aprovada pela IA sem a necessidade de intervenção humana.
 
-- [Google Gemini API](https://ai.google.dev/) — responsável pelo processamento de linguagem natural (NLP) e pelas respostas conversacionais do chatbot  
-- [AWS Textract](https://aws.amazon.com/pt/textract/) — utilizado para **extração automática de dados de documentos (OCR semântico)**  
-- [AWS Rekognition](https://aws.amazon.com/pt/rekognition/) — utilizado para **validação biométrica por comparação facial**
+### 3. Atendimento Inteligente e NLP via Chatbot
+- Implementado nativamente no frontend consumindo a API do **Google Gemini (LLM)**, fornecemos ao cliente um assistente 24/7.
+- O chatbot processa através de processamento de linguagem natural (NLP) a intenção do usuário, entendendo perguntas abertas como “O que está faltando entregar?”, “Quando meu visto de estudante chega?”, "O que acontece na etapa de documentos pendentes?".
+- Aplicamos as devidas proteções (guardrails): A IA não infere prazos precisos, nem toma decisões pela agência consular e nem faz promessas. Ela opera apenas traduzindo os estados técnicos para uma linguagem amigável.
 
-Esses serviços permitem automatizar tarefas como **extração de dados de documentos, validação de identidade e atendimento inteligente ao cliente**, aumentando a eficiência e confiabilidade da plataforma.
-
----
-## 🏗 Arquitetura da Plataforma
-
-A plataforma **YouVisa** foi projetada seguindo uma arquitetura moderna baseada na separação entre **frontend, backend e serviços cognitivos em nuvem**, garantindo escalabilidade, segurança e facilidade de manutenção.
-
-- **Frontend:** desenvolvido em **Next.js 15 + React 19 + TypeScript**, responsável pela interface do usuário, dashboards e acompanhamento dos processos.
-
-- **Backend:** implementado em **Python 3.12 com FastAPI**, responsável pelas regras de negócio, controle do fluxo de processos, autenticação e integração com serviços externos.
-
-- **Banco de Dados:** **PostgreSQL hospedado no Neon.tech**, utilizando **SQL puro** para maior controle e desempenho nas consultas.
-
-- **Arquitetura Event-Driven:** mudanças de status dos processos geram eventos automáticos que acionam notificações, auditoria e atualização das interfaces do sistema.
-
-- **Serviços de Inteligência Artificial:** integração com **Amazon Textract** (OCR de documentos), **Amazon Rekognition** (validação biométrica) e **Google Gemini** (chatbot com NLP), permitindo automação e suporte inteligente ao usuário.
-
-Essa arquitetura permite que o sistema ofereça **automação, rastreabilidade e maior eficiência no acompanhamento de processos de visto**.
+### 4. RAG e Contexto com Usuário Logado (Status de Processo)
+- O Chatbot foi enriquecido com a lógica avançada para injetar contexto (Retrieval-Augmented Generation / RAG conceitual) focada nos dados próprios do usuário logado.
+- Caso o usuário faça perguntas específicas como "Qual o status do MEU processo?", o chatbot obriga sua autenticação na mesma interface amigável (enviando senha OTP paro email no ato da conversa).
+- Uma vez autenticado, ele enriquece o contexto das requisições ao modelo Gemini injetando os históricos e status do banco de dados referenciando a conta logada do cliente. Isto faz com que a IA informe com total precisão como está o processo particular do cliente e quais as exatas pendências em falta.
 
 ---
 
-## 🚀 Uso Estratégico de Inteligência Artificial
+## 🗄️ BANCO DE DADOS EM NUVEM (ORACLE AUTONOMOUS DATABASE)
 
-A plataforma YouVisa utiliza Inteligência Artificial em múltiplas camadas do sistema para aumentar a eficiência operacional, reduzir erros humanos e melhorar a experiência do usuário durante o acompanhamento do processo de visto.
-
-As principais aplicações de IA na solução são descritas a seguir:
-
-### 1️⃣ Extração de Dados do Passaporte (OCR / Visão Computacional)
-
-Utilizando o serviço **Amazon Textract**, o sistema é capaz de processar automaticamente o passaporte enviado pelo usuário logo após o upload.
-
-A tecnologia de OCR permite extrair informações estruturadas do documento, como:
-
-- Nome completo  
-- Número do documento  
-- Data de expiração  
-
-Esses dados são automaticamente comparados com as informações preenchidas no sistema, permitindo validar inconsistências e reduzir erros de digitação, acelerando o processo de análise documental.
-
----
-
-### 2️⃣ Validação Biométrica por Comparação Facial
-
-Para reforçar a segurança da plataforma, utilizamos o serviço **Amazon Rekognition**, que realiza a comparação biométrica entre a foto enviada pelo usuário e a foto presente no passaporte.
-
-A funcionalidade **Compare Faces** calcula o nível de similaridade entre as imagens. Caso o índice ultrapasse o limite de confiança configurado no sistema, a identidade é validada automaticamente, reduzindo a necessidade de verificação manual pela equipe administrativa.
-
----
-
-### 3️⃣ Atendimento Inteligente com Chatbot (LLM + NLP)
-
-O sistema incorpora um **Chatbot baseado em Inteligência Artificial**, integrado à API do **Google Gemini**, que oferece atendimento automatizado 24 horas por dia.
-
-Por meio de **Processamento de Linguagem Natural (NLP)**, o chatbot é capaz de compreender diferentes formas de perguntas feitas pelos usuários, como:
-
-- "O que ainda falta enviar no meu processo?"
-- "Qual é o status do meu visto?"
-- "O que significa documentos pendentes?"
-
-A IA interpreta a intenção da pergunta e responde utilizando uma linguagem simples e acessível.
-
-Para garantir segurança e confiabilidade, foram implementados **mecanismos de governança (guardrails)** que impedem a IA de:
-
-- inferir prazos de aprovação
-- tomar decisões institucionais
-- prometer resultados de processos consulares
-
-Dessa forma, a IA atua apenas como **assistente informativo**, traduzindo os estados técnicos do sistema para o usuário.
-
----
-
-### 4️⃣ Contextualização de Respostas com Dados do Usuário (RAG)
-
-O chatbot também utiliza uma abordagem inspirada em **Retrieval-Augmented Generation (RAG)** para enriquecer suas respostas com dados reais do sistema.
-
-Quando o usuário faz perguntas específicas sobre seu próprio processo, como:
-
-> "Qual é o status do meu processo?"
-
-o sistema solicita **autenticação segura via código OTP enviado por e-mail**.
-
-Após a autenticação, o backend recupera as informações do processo diretamente do banco de dados e as inclui como contexto na consulta enviada ao modelo Gemini.
-
-Isso permite que o chatbot forneça respostas **precisas, contextualizadas e personalizadas**, evitando respostas genéricas ou imprecisas.
----
-
-## 🗄️ Arquitetura de Banco de Dados
-
-O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **PostgreSQL através do serviço Neon.tech**. Todas as integrações a ele são feitas no backend em Python via SQL puro estruturado (sem uso de ORMs), visando entregar o mais alto desempenho com o controle estrito das interações.
+O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Oracle Autonomous Database** (conexão *thin* via `oracledb` com pool). Todas as integrações são feitas no backend em Python via SQL puro estruturado (sem uso de ORMs), com um `DictCursor` próprio que traduz automaticamente o dialeto PostgreSQL para Oracle (`%s` → `:N`, `NOW()` → `SYSTIMESTAMP`, `RETURNING`, `LIMIT`, `TRUE/FALSE`, etc.), entregando alto desempenho com controle estrito das interações.
 
 **Tabelas implementadas para suportar a complexidade do sistema:**
 - `usuarios`: Cadastro fundamental dos clientes, autenticados sem senha (passwordless) unicamente por código OTP.
@@ -194,178 +159,74 @@ O projeto utiliza um banco de dados relacional robusto hospedado na nuvem: **Pos
 
 ---
 
+## 🖥️ PASSO A PASSO / DEMONSTRAÇÃO DO SISTEMA
 
-## 📁 ESTRUTURA DE PASTAS
+*(Abaixo o registro imagético da plataforma YouVisa na Sprint 3).*
 
-- <b>assets</b>: imagens utilizadas no projeto
+### Visão Geral da Home e Criação de Processos
+- A Home page unifica serviços, informações adicionais e aciona imediatamente o cliente:
+  <br/>![Website](assets/01.website.png)
 
-- <b>src</b>: Arquivos do sistema backend, responsáveis pela API, lógica do sistema e integração com banco de dados e IA e Arquivos do sistema frontend, responsáveis pela interface do usuário
+- O cliente que não tem conta fornece nome, telefone e email. Após, insere um PIN (OTP) enviado por email para validar a segurança:
+  <br/>![Criar Conta](assets/02.criar_conta_cliente.png)  <br/>![Verificar Email](assets/03.verificar_email.png)  <br/>![Processos Cliente](assets/05.processos_cliente.png)
 
-- <b>docs</b>: documentação técnica em PDF (Relatório do projeto e o Fluxo de Estados)
+- Abertura de um processo, sendo possível gerar um upload estruturado de itens essenciais:
+  <br/>![Novo Processo](assets/06.novo_processo.png)  <br/>![Upload de Docs](assets/07.upload_documentos.png)
 
-- <b>README.md</b>: guia e explicação geral sobre o projeto
 
----
-## 🔄 Fluxo de Estados do Processo
-O sistema YouVisa utiliza uma **máquina de estados** para controlar o ciclo de vida de cada solicitação de visto.  
-Cada transição de estado é registrada no backend e pode gerar eventos automáticos, como envio de e-mails e atualização do painel do cliente.
-![fluxo de estado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/fluxo_estados.png)
+### O Poder Operacional do Admin e Uso de IA
+- O admin tem uma central de operações onde visualiza, atualiza e aprova documentos e status (Machine states):
+  <br/>![Dashboard Admin](assets/09.admin_funcionario.png)
 
-Fluxo principal:
+- Em destaque o **Aprovar com IA**. Em um clique, o Amazon Textract extrai dados do passaporte visualizando sua integridade.
+  <br/>![Aprovar Doc por IA](assets/10.aprovar_documento_ia.png)
+- Simultaneamente pode validar identidades, comparando a foto submetida versus aquela capturada no passaporte com o AWS Rekognition.
+  <br/>![Validar Foto IA](assets/11.validar_fotos_ia.png)
+- Analisar Caso com IA — a joia da coroa do YouVisa: um copiloto que orquestra Textract, Rekognition e regras de negócio para entregar, em segundos, um diagnóstico completo de prontidão do processo de visto.
+  <br/>![Analisar Caso com IA](assets/12.analisar_caso_ia.png)
 
-Recebido → Em Análise → Docs Pendentes → Em Análise → Em Processamento → Aprovado / Rejeitado
 
-📄 Documentação completa:  
-[Fluxo de Estados do Processo](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/docs/FLUXO_DE_ESTADOS.md)
---- 
-## ✨ Principais Funcionalidades da Plataforma
+### Comunicações e Atendimento Automatizado
+- Mudanças sistêmicas disparam **E-mails HTML interativos** detalhando a alteração efetuada nos processos e eventuais correções (arquitetura Event-Driven):
+  <br/>![Email Visto Aprovado](assets/14.email_visto_aprovado.png)
+  <br/>![Email Aviso Caso Analisado](assets/13.aviso_caso_analisado.png)
 
-- Cadastro e autenticação via OTP
-- Upload de documentos para processos de visto
-- Máquina de estados para controle do processo
-- Validação automática de documentos com IA
-- Comparação biométrica com AWS Rekognition
-- Notificações automáticas por e-mail
-- Chatbot inteligente para consulta de processos
+- O Chatbot entra ajudando pessoas sem login em conversas diárias. Ao solicitar processos, exige o login seguro por OTP:
+  <br/>![Login Chatbot](assets/15.login_chatbot.png)
+  <br/>![Atendimento Chatbot](assets/16.chatbot_atendimento.png)
 
-## 🖥️ Demonstração da Plataforma
+- Integração com Telegram — o YouVisa no bolso do cliente: basta escanear o QR code do dashboard para vincular a conta e, a partir daí, consultar status do processo, receber notificações em tempo real, conversar com o agente de IA, enviar documentos por foto e até falar diretamente com um atendente humano — tudo pelo aplicativo que ele já usa todos os dias.
+  <br/>![QR Code Vincular Telegram](assets/17.vincular_telegram_qrcode.png)
+  <br/>![YouVisa Bot Telegram](assets/18.telegram_youvisa_bot.png)
+  <br/>![Telegram Enviar Docs](assets/19.telegram_enviar_docs.png)
 
-Esta seção apresenta uma visão prática da plataforma **YouVisa** desenvolvida na Sprint 3.  
-A seguir são exibidas as principais funcionalidades da aplicação, incluindo a experiência do usuário, o fluxo de criação de processos e as ferramentas administrativas apoiadas por Inteligência Artificial.
-
----
-
-## 🌐 Experiência do Usuário — Portal do Cliente
-
-### Página Inicial e Criação de Conta
-
-A página inicial centraliza os principais serviços da plataforma e orienta o usuário no início do processo de solicitação de visto.
-
-![Website](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/01.website.png)
-
-Caso o cliente ainda não possua uma conta, ele pode realizar um cadastro simples informando **nome, telefone e e-mail**.
-
-![Criar Conta](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/02.criar_conta_cliente.png)
-
-Para garantir segurança no acesso, o sistema utiliza autenticação **OTP (One-Time Password)** enviada por e-mail.
-
-![Verificar Email](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/03.verificar_email.png)
-
-Após o envio da solicitação de login, o usuário recebe o código de verificação em seu e-mail para validar o acesso à plataforma.
-
-![Código enviado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/04.codigo_enviado.png)
-
-Uma vez autenticado, o cliente passa a ter acesso ao painel onde pode visualizar e acompanhar seus processos de solicitação de visto.
-
-![Processos Cliente](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/05.processos_cliente.png)
+- Atendimento humano sob demanda — quando a IA não basta, o cliente fala com gente: um clique abre um chat bidirecional em tempo real entre usuário e equipe YouVisa, acessível tanto pelo dashboard quanto pelo Telegram, com histórico preservado e transição transparente entre bot e atendente.
+  <br/>![Atendimento Humanno Usuário](assets/20.atendimento_humano_usuario.png)
+  <br/>![Atendimento Humanno Admin](assets/21.atendimento_humano_admin.png)
 
 ---
 
-### Abertura de um Novo Processo
+## **🛠️ TECNOLOGIAS UTILIZADAS**
 
-O cliente pode iniciar um novo processo diretamente pela plataforma, enviando os documentos necessários para análise.
+ **Frontend:**
+- [Next.js 15 (App Router)](https://nextjs.org/) + React 19
+- Tailwind CSS v4 + TypeScript
 
-![Novo Processo](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/06.novo_processo.png)
+ **Backend & Serviços:**
+- Python 3.12 + FastAPI
+- Oracle Autonomous Database (oracledb thin)
+- Telegram Bot API (atendimento dual-channel)
+- Autenticação local JWT
 
-O sistema permite o **upload estruturado de documentos essenciais**, garantindo organização e padronização das informações enviadas.
-
-![Upload de Docs](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/07.upload_documentos.png)
-
-Após o envio dos documentos, o processo passa automaticamente para a etapa de **análise**, onde será avaliado pela equipe administrativa e pelos mecanismos de validação automatizada do sistema.
-
-![Processo em análise](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/08.processo_analise.png)
-
----
-
-## ⚙️ Painel Administrativo e Uso de Inteligência Artificial
-
-A plataforma também conta com um **painel administrativo completo**, que permite à equipe interna acompanhar, validar e atualizar os processos dos clientes.
-
-![Dashboard Admin](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/09.admin_funcionario.png)
-
-Nesse ambiente, os administradores podem:
-
-- analisar documentos enviados
-- atualizar o status do processo
-- validar informações automaticamente utilizando IA
-- acompanhar o histórico de transições do processo
+ **Inteligência Artificial & Nuvem:**
+- [Google Gemini API](https://ai.google.dev/) (Integração NLP e Conversação)
+- [AWS Textract](https://aws.amazon.com/pt/textract/) (Leitura e OCR Semântico)
+- [AWS Rekognition](https://aws.amazon.com/pt/rekognition/) (Visão Computacional - Identity)
 
 ---
 
-### Validação Automatizada de Documentos com IA
+## **COMO EXECUTAR O PROJETO MÚLTIPLAS PASTAS**
 
-Um dos principais recursos do sistema é a funcionalidade **Aprovar com IA**, que utiliza o serviço **Amazon Textract** para extrair automaticamente dados do passaporte enviado pelo cliente.
-
-O sistema analisa campos como:
-
-- Nome completo  
-- Número do documento  
-- Data de expiração  
-
-Essa verificação automatizada reduz erros de digitação e agiliza o processo de validação.
-
-![Aprovar Doc por IA](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/10.aprovar_documento_ia.png)
-
----
-
-### Verificação de Identidade por Comparação Facial
-
-Para aumentar a segurança do processo, o sistema utiliza o **Amazon Rekognition** para realizar **comparação biométrica entre a foto enviada pelo usuário e a foto presente no passaporte**.
-
-Caso o nível de similaridade esteja dentro da margem de segurança definida, a identidade é validada automaticamente.
-
-![Validar Foto IA](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/11.validar_fotos_ia.png)
-
-Caso a validação identifique inconsistências ou baixa similaridade entre as imagens, o sistema solicita ao usuário o **reenvio da fotografia**, garantindo maior confiabilidade no processo.
-
-![Usuário reenviar foto](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/12.usuario_reenviar_foto.png)
-
----
-
-## 📩 Comunicações Automatizadas
-
-A plataforma utiliza uma arquitetura **orientada a eventos (event-driven)**.  
-Sempre que ocorre uma mudança relevante no status do processo, o sistema dispara automaticamente notificações ao cliente.
-
-Após a validação completa dos documentos e etapas do processo, o cliente é informado quando o visto é aprovado.
-
-![Visto aprovado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/13.visto_aprovado.png)
-
-Além disso, notificações também são enviadas por **e-mails HTML interativos**, informando de forma clara o novo status do processo e eventuais ações necessárias.
-
-![Email Visto Aprovado](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/14.email_visto_aprovado.png)
-
----
-
-## 🤖 Atendimento Inteligente via Chatbot
-
-A plataforma também conta com um **Chatbot baseado em IA**, disponível para auxiliar os usuários em tempo real.
-
-O assistente é capaz de responder perguntas como:
-
-- Qual o status do meu processo?
-- Está faltando algum documento?
-- Qual é o próximo passo do meu pedido de visto?
-
-![Login Chatbot](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/15.login_chatbot.png)
-
-Para acessar informações específicas do processo, o chatbot solicita **autenticação segura via OTP**, garantindo que apenas o titular tenha acesso aos dados.
-
-Após autenticado, o sistema consulta as informações do banco de dados e fornece respostas contextualizadas ao usuário.
-
-![Atendimento Chatbot](https://github.com/Mu1518/FIAP_FASE5_Sprint3_Youvisa/blob/main/assets/16.chatbot_atendimento.png)
----
-
-## **🚀 Como Executar o Projeto**
-## ⚙️ Pré-requisitos
-
-Antes de executar o projeto, é necessário ter instalado:
-
-- Node.js 18+
-- Python 3.12+
-- Git
-- Conta AWS configurada
-- Chave da API Gemini
 O projeto é particionado em Frontend (Next.js) e Backend (FastAPI). Ambas as etapas precisam rodar.
 
 ### 1. Configurando e Rodando o Backend (FastAPI)
@@ -389,7 +250,16 @@ pip install -r requirements.txt
 python3 -m uvicorn main:app --reload
 ```
 
-### 2. Configurando e Rodando o Frontend (Next.js)
+### 2. Rodando o Bot do Telegram
+```bash
+# 1. Entre na pasta backend pelo terminal
+cd backend
+
+# 2. Execute o bot do Telegram
+python telegram_bot.py
+```
+
+### 3. Configurando e Rodando o Frontend (Next.js)
 ```bash
 # 1. Em outra aba de seu terminal, vá a pasta do app React
 cd frontend
@@ -406,39 +276,3 @@ npm run dev
 
 # Abra http://localhost:3000 em seu navegador
 ```
----
-##  :octocat: CONTRIBUIÇÕES AO PROJETO
-
-Ficamos muito felizes com a sua contribuição e valorizamos cada sugestão e esforço dedicado a aprimorá-lo.
-
-Como Contribuir: 
-
-* Clique no botão "Fork" no canto superior direito desta página para criar uma cópia do repositório na sua conta do GitHub.
-
-* Clone o repositório forkado para o seu ambiente de desenvolvimento local.
-
-* Crie uma branch separada para a sua contribuição, desenvolva suas modificações e realize os commits necessários na sua branch.
-
-* Quando suas alterações estiverem prontas, envie um Pull Request do seu fork para a branch main deste repositório.
-
-Seu Pull Request será revisado pela equipe e, se tudo estiver correto, será aceito e suas contribuições serão integradas ao projeto 😃!
-
----
-## **VIDEO EXPLICATIVO**
-
-Assista ao vídeo e veja a ideia central da plataforma
-
-[Clique para Assistir](https://youtu.be/lYtCkQpfYj4)
-## **VIDEO DEMONSTRATIVO**
-
-Assista ao vídeo e veja como faz para se cadastar e como funciana pagina de administrador(funcionário)
-
-[Clique para Assistir](https://youtu.be/IHyLbsFLwzo])
-## 🗃 Histórico de lançamentos
-
-*  1.0.0 - 07/03/2026
-    
-
-## 📋 Licença
-
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>

@@ -5,7 +5,8 @@
 </p>
 
 <br>
-![Capa](https://github.com/Mu1518/FIAP_FASE6_Youvisa_Sprint4/blob/main/assets/Capa.%20Sprin4.png)
+
+![capa](https://github.com/Mu1518/FIAP_FASE6_Youvisa_Sprint4/blob/main/assets/Capa.%20Sprin4.png)
 
 # **ENTERPRISE CHALLENGE - SPRINT 4 YOUVISA**
 

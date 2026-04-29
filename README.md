@@ -8,7 +8,7 @@
 
 # **ENTERPRISE CHALLENGE - SPRINT 4 YOUVISA**
 
-## GRUPO 4
+## GRUPO 34
 
 ## 👨‍🎓 Integrantes:
 - <a href= "https://www.linkedin.com/in/amanda-fragnan-b61537255">Amanda Fragnan</a>
